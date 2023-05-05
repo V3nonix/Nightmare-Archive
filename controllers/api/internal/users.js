@@ -1,8 +1,8 @@
-const User = require('../../models/user/user');
+const User = require('../../../models/user/user');
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const errorHandler = require('../../utils/errorHandler');
+const errorHandler = require('../../../utils/errorHandler');
 
 
 function createJWT(user) {
