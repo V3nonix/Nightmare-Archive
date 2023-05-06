@@ -1,4 +1,5 @@
 const { S3Client, PutObjectCommand, DeleteObjectCommand, HeadBucketCommand } = require('@aws-sdk/client-s3');
+const errorHandler = require('../utils/errorHandler');
 const { v4: uuidv4 } = require('uuid');
 
 require('dotenv').config()
@@ -11,10 +12,26 @@ const s3 = new S3Client({
     }
 });
 
-async function upload(file, id) {
-    const params = {
-        
+async function uploadFile(file) {
+    const key = `${uuidv4()}.${file.originalname.split('.').pop()}`;
+    const command = new PutObjectCommand({
+        Bucket: process.env.AWS_S3_BUCKET,
+        Key: key,
+        Body: file.buffer,
+        ContentType: file.mimetype,
+    });
+    try {
+        const res = await s3.send(command);
+        console.log(`\x1B[32mSuccess! \u001b[0m| File uploaded successfully to ${res.Location}`);
+        return {key, url: res.Location};
+    } catch (err) {
+        errorHandler(__dirname, __filename, 'upload', err);
+        throw new Error('Error uploading file to S3')
     }
+}
+
+async function deleteFile(key) {
+
 }
 
 async function checkS3Bucket() {
@@ -34,5 +51,6 @@ async function checkS3Bucket() {
 }
 
 module.exports = {
+    uploadFile,
     checkS3Bucket,
 }
