@@ -47,6 +47,7 @@ export default function App() {
             element={<UserPage user={user} 
                       alterUser={alterUser}
                       handleError={handleError}
+                      setNavType={setNavType}
                     />} 
           />
           <Route 
@@ -54,6 +55,7 @@ export default function App() {
             element={<PostPage user={user} 
                       alterUser={alterUser}
                       handleError={handleError}
+                      setNavType={setNavType}
                     />} 
           />
           <Route 
@@ -61,6 +63,7 @@ export default function App() {
             element={<IndexPage user={user} 
                       alterUser={alterUser}
                       handleError={handleError}
+                      setNavType={setNavType}
                     />} 
           />
           <Route 
