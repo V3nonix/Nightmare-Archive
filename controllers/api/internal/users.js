@@ -17,11 +17,6 @@ function createJWT(user) {
 async function create(req, res) {
     try {
         const user = await User.create(req.body);
-        await UserData.create({
-            user: user._id,
-            chatrooms: [],
-            groups: [],
-        });
         const token = createJWT(user);
         res.json(token);
     } catch (err) {
