@@ -18,20 +18,31 @@ async function uploadFile(file) {
         Bucket: process.env.AWS_S3_BUCKET,
         Key: key,
         Body: file.buffer,
-        ContentType: file.mimetype,
+        ContentType: file.mimetype
     });
     try {
         const res = await s3.send(command);
         console.log(`\x1B[32mSuccess! \u001b[0m| File uploaded successfully to ${res.Location}`);
         return {key, url: res.Location};
     } catch (err) {
-        errorHandler(__dirname, __filename, 'upload', err);
+        errorHandler(__dirname, __filename, 'uploadFile', err);
         throw new Error('Error uploading file to S3')
     }
 }
 
 async function deleteFile(key) {
-
+    const command = new DeleteObjectCommand({
+        Bucket: process.env.AWS_S3_BUCKET,
+        Key: key   
+    });
+    try {
+        const res = await s3.send(command);
+        console.log(`\x1B[32mSuccess! \u001b[0m| File deleted successfully at ${res.Location}`);
+        return res;
+    } catch (err) {
+        errorHandler(__dirname, __filename, 'deleteFile', err);
+        throw new Error('Error deleting file from S3')
+    }
 }
 
 async function checkS3Bucket() {
@@ -52,5 +63,6 @@ async function checkS3Bucket() {
 
 module.exports = {
     uploadFile,
+    deleteFile,
     checkS3Bucket,
 }
