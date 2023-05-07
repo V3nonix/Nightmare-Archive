@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import axios from 'axios';
 import './CreatePostForm.css';
+import { sendPostData } from '../../utilities/api/posts';
 
 const initialForm = {
     title: '',
-    userId: '',
     content: '',
     file: '',
     error: ''
@@ -14,12 +13,36 @@ export default function CreatePostForm({ user, navigate }) {
     const [formData, setFormData] = useState(initialForm);
 
     function handleChange(evt) {
-      setFormData({
+      if (evt.target.type === 'file') {
+        setFormData({
+          ...formData,
+          file: evt.target.files[0],
+          error: ''
+        });
+      } else {
+        setFormData({
           ...formData,
           [evt.target.name]: evt.target.value,
           error: ''
-      });
+        });
+      }
     };
+
+    function handleSubmit(evt) {
+      evt.preventDefault();
+      const reqFormData = new FormData();
+      reqFormData.append('title', formData.title);
+      reqFormData.append('content', formData.content);
+      reqFormData.append('file', formData.file);
+      try {
+        sendPostData(reqFormData);
+      } catch (err) {
+        setFormData({
+          ...formData,
+          error: `${err}`
+        });
+      }
+    }
     
     return (
         <div className='FormPage-container'>
@@ -46,7 +69,7 @@ export default function CreatePostForm({ user, navigate }) {
                 <label>Upload Image: </label>
                 <input type="file" name='file' onChange={handleChange} />
               </div>
-            <button type='submit' disabled={true}>CREATE</button>
+            <button type='submit'>CREATE</button>
           </form>
           {formData.error && <p className='error-message'>&nbsp;{formData.error}</p>}
         </div>

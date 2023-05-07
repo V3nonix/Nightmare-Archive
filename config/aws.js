@@ -21,9 +21,9 @@ async function uploadFile(file) {
         ContentType: file.mimetype
     });
     try {
-        const res = await s3.send(command);
-        console.log(`\x1B[32mSuccess! \u001b[0m| File uploaded successfully to ${res.Location}`);
-        return {key, url: res.Location};
+        await s3.send(command);
+        console.log('\x1B[32mSuccess! \u001b[0m| File uploaded successfully.');
+        return {key, url: `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`}
     } catch (err) {
         errorHandler(__dirname, __filename, 'uploadFile', err);
         throw new Error('Error uploading file to S3')

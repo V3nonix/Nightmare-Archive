@@ -5,4 +5,6 @@ const uploadMiddleware = require('../../../config/uploadMiddlware');
 
 const postsCtrl = require('../../../controllers/api/internal/posts');
 
-router.post('/new', uploadMiddleware, postsCtrl.create);
+router.post('/create', uploadMiddleware, postsCtrl.create);
+
+module.exports = router;
