@@ -37,7 +37,7 @@ async function deleteFile(key) {
     });
     try {
         const res = await s3.send(command);
-        console.log(`\x1B[32mSuccess! \u001b[0m| File deleted successfully at ${res.Location}`);
+        console.log(`\x1B[32mSuccess! \u001b[0m| File deleted successfully.`);
         return res;
     } catch (err) {
         errorHandler(__dirname, __filename, 'deleteFile', err);

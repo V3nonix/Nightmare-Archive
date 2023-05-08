@@ -3,7 +3,14 @@ const Post = require('../../../models/post');
 const { uploadFile, deleteFile } = require('../../../config/aws');
 const errorHandler = require('../../../utils/errorHandler');
 
-async function create(req, res) {
+async function checkAccess(req, res) {
+    const post =  await Post.findOne({ userId: req.user._id, _id: req.body.postId });
+    if (!post) res.status(400).json('Access Denied!');
+    req.imageKey = post.imageKey
+    return next();
+}
+
+async function createPost(req, res) {
     try {
         const uploadRes = await uploadFile(req.file);
         const post = await Post.create({
@@ -14,7 +21,25 @@ async function create(req, res) {
         });
         res.json(post._id);
     } catch (err) {
-        errorHandler(__dirname, __filename, 'create', err, 500, res);
+        errorHandler(__dirname, __filename, 'createPost', err, 500, res);
+    }
+}
+
+async function updatePost(req, res) {
+    try {
+
+    } catch (err) {
+        errorHandler(__dirname, __filename, 'updatePost', err, 500, res);
+    }
+}
+
+async function deletePost(req, res) {
+    try {
+        await deleteFile(req.imageKey);
+        await Post.findByIdAndDelete(req.postId);
+        res.status(200).json('File deleted successfully');
+    } catch (err) {
+        errorHandler(__dirname, __filename, 'deletePost', err, 500, res);
     }
 }
 
@@ -28,6 +53,9 @@ async function getUserPosts(req, res) {
 }
 
 module.exports = {
-    create,
+    checkAccess,
+    create: createPost,
+    update: updatePost,
+    delete: deletePost,
     getUserPosts,
 };
