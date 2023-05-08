@@ -26,13 +26,40 @@ const postSchema = new Schema({
         type: [mongoose.Schema.Types.ObjectId],
         maxlength: 500,
         ref: "Comment"
+    },
+    public: {
+        type: Boolean,
+        default: false
+    },
+    reactions: {
+        heart: { type: Number, default: 0},
+        like: { type: Number, default: 0},
+        laugh: { type: Number, default: 0}
+    }
+}, {
+    timestamps: true,
+    toJSON: { 
+        virtuals: true,
+        transform: function(doc, ret) {
+            delete ret.createdAt;
+            delete ret.updatedAt;
+            delete ret.__v;
+        }
     }
 });
 
-/* User Schema VIRTUALS */
+/* Post Schema VIRTUALS */
 
-/* User Schema STATICS */
+postSchema.virtual('archivedAt').get(function() {
+    return new Date(this.createdAt);
+});
 
-/* User Schema MIDDLEWARE */
+postSchema.virtual('editedAt').get(function() {
+    return new Date(this.updatedAt);
+});
+
+/* Post Schema STATICS */
+
+/* Post Schema MIDDLEWARE */
 
 module.exports = mongoose.model('Post', postSchema);
