@@ -2,7 +2,7 @@ import './UserPostList.css';
 import UserPostItem from '../../components/UserPostItem/UserPostItem';
 
 
-export default function UserPostList({ posts, navigate }) {
+export default function UserPostList({ posts, navigate, removePost }) {
     
     return (
 				<>
@@ -12,7 +12,7 @@ export default function UserPostList({ posts, navigate }) {
 									<UserPostItem key={idx} post={post} idx={idx}
 										archivedAt={new Date(post.createdAt)}
 										editedAt={new Date(post.updatedAt)}
-										navigate={navigate}
+										navigate={navigate} removePost={removePost}
 									/>
 								))}
 							</div>

@@ -17,6 +17,14 @@ export async function sendPostData(reqFormData) {
     });
 }
 
+export async function deletePost(postId) {
+    return sendRequest(`${BASE_URL}/delete`, 'POST', {postId});
+}
+
+export async function updatePost(postFormData) {
+    return sendRequest(`${BASE_URL}/update`, 'PUT', {postFormData});
+}
+
 export async function getUserPosts() {
     return sendRequest(`${BASE_URL}/user`);
 }

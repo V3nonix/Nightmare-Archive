@@ -3,12 +3,17 @@ const Post = require('../../../models/post');
 const { uploadFile, deleteFile } = require('../../../config/aws');
 const errorHandler = require('../../../utils/errorHandler');
 
-async function checkAccess(req, res) {
-    const post =  await Post.findOne({ userId: req.user._id, _id: req.body.postId });
-    if (!post) res.status(400).json('Access Denied!');
-    req.imageKey = post.imageKey
-    return next();
+async function checkAccess(req, res, next) {
+    try {
+        const post =  await Post.findOne({ userId: req.user._id, _id: req.body.postId });
+        if (!post) res.status(400).json('Access Denied!');
+        req.imageKey = post.imageKey
+        return next();
+    } catch (err) {
+        errorHandler(__dirname, __filename, 'checkAccess', err, 500, res);
+    }
 }
+
 
 async function createPost(req, res) {
     try {
@@ -36,7 +41,7 @@ async function updatePost(req, res) {
 async function deletePost(req, res) {
     try {
         await deleteFile(req.imageKey);
-        await Post.findByIdAndDelete(req.postId);
+        await Post.findByIdAndDelete(req.body.postId);
         res.status(200).json('File deleted successfully');
     } catch (err) {
         errorHandler(__dirname, __filename, 'deletePost', err, 500, res);

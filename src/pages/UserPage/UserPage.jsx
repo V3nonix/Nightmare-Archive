@@ -18,6 +18,11 @@ export default function UserPage({ user, handleError, navigate, setNavType }) {
         setPosts(posts);
     }
 
+    async function removePost(removedPostId) {
+        let tempPosts = posts;
+        setPosts(tempPosts.filter(post => post._id !== removedPostId));
+    }
+
     return (
         <main className='UserPage'>
             <aside className='UserPage-aside-left'>
@@ -26,7 +31,9 @@ export default function UserPage({ user, handleError, navigate, setNavType }) {
             <aside className='UserPage-aside-right'>
                 <h2>Your ARCHIVE</h2>
                 { posts ?
-                        <UserPostList posts={posts} navigate={navigate}/>
+                        <UserPostList posts={posts} navigate={navigate}
+                            removePost={removePost}
+                        />
                     :
                         <Loader />
                 }
