@@ -2,7 +2,7 @@ import { useState, useEffect} from "react";
 import './PostPage.css';
 
 
-export default function PostPage({ user, handleError, setNavType }) {
+export default function PostPage({ user, handleError, navigate, setNavType }) {
     useEffect(() => {
         setNavType('PostPage');
     }, [setNavType]);

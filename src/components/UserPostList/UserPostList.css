@@ -1,0 +1,17 @@
+.UserPostList {
+    display: grid;
+    grid-template-columns: repeat(6, 28vmin);
+    grid-template-rows: repeat(3, 29vmin);
+    align-items: center;
+    margin: 1vmin;
+}
+
+@media screen and (max-width: 1250px) {
+    .UserPostList {
+        display: grid;
+        grid-template-columns: repeat(3, 28vmin);
+        grid-template-rows: repeat(6, 29vmin);
+        align-items: center;
+        margin: 1vmin;
+    }
+}
