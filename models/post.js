@@ -41,22 +41,12 @@ const postSchema = new Schema({
     toJSON: { 
         virtuals: true,
         transform: function(doc, ret) {
-            delete ret.createdAt;
-            delete ret.updatedAt;
             delete ret.__v;
         }
     }
 });
 
 /* Post Schema VIRTUALS */
-
-postSchema.virtual('archivedAt').get(function() {
-    return new Date(this.createdAt);
-});
-
-postSchema.virtual('editedAt').get(function() {
-    return new Date(this.updatedAt);
-});
 
 /* Post Schema STATICS */
 

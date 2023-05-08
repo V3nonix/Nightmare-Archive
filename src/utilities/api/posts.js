@@ -1,4 +1,6 @@
+const BASE_URL = '/api/internal/posts';
 import { getToken } from '../usersService';
+import sendRequest from '../sendReq';
 import axios from 'axios';
 
 export async function sendPostData(reqFormData) {
@@ -9,8 +11,12 @@ export async function sendPostData(reqFormData) {
     if (token) {
         headers.Authorization = `Bearer ${token}`;
     }
-    axios.post('/api/internal/posts/create', reqFormData, {headers})
+    axios.post(`${BASE_URL}/create`, reqFormData, {headers})
       .then(response => {
         console.log(response.data);
     });
+}
+
+export async function getUserPosts() {
+    return sendRequest(`${BASE_URL}/user`);
 }

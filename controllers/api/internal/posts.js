@@ -18,6 +18,16 @@ async function create(req, res) {
     }
 }
 
+async function getUserPosts(req, res) {
+    try {
+        const posts = await Post.find({ userId: req.user._id });
+        res.json(posts);
+    } catch (err) {
+        errorHandler(__dirname, __filename, 'getUserPosts', err, 500, res);
+    }
+}
+
 module.exports = {
     create,
+    getUserPosts,
 };
