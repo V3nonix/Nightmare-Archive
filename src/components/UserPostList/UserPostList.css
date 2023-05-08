@@ -1,17 +1,17 @@
 .UserPostList {
+    height: 70vh;
+    width: 50vw;
+    align-self: center;
     display: grid;
-    grid-template-columns: repeat(6, 28vmin);
-    grid-template-rows: repeat(3, 29vmin);
+    grid-template-columns: repeat(3, 29.5vmin);
+    grid-template-rows: repeat(1, 45vmin);
+    column-gap: 1.5vmin;
+    row-gap: 1.5vmin;
     align-items: center;
-    margin: 1vmin;
-}
-
-@media screen and (max-width: 1250px) {
-    .UserPostList {
-        display: grid;
-        grid-template-columns: repeat(3, 28vmin);
-        grid-template-rows: repeat(6, 29vmin);
-        align-items: center;
-        margin: 1vmin;
-    }
+    justify-content: center;
+    margin: 1.5vmin 1.5vmin 1.5vmin 1.5vmin;
+    background-color: var(--background-2);
+    border: 0.1rem outset var(--accent-2);
+    padding: 2.5vmin;
+    overflow-y: scroll;
 }

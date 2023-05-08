@@ -20,13 +20,18 @@ export default function UserPage({ user, handleError, navigate, setNavType }) {
 
     return (
         <main className='UserPage'>
-            <div>UserPage</div>
-            <CreatePostForm user={user} />
-            { posts ?
-                <UserPostList posts={posts} navigate={navigate}/>
-            :
-                <Loader />
-            }
+            <aside className='UserPage-aside-left'>
+                <CreatePostForm user={user} />
+            </aside>
+            <aside className='UserPage-aside-right'>
+                <h2>Your ARCHIVE</h2>
+                { posts ?
+                        <UserPostList posts={posts} navigate={navigate}/>
+                    :
+                        <Loader />
+                }
+            </aside>
+
         </main>
     );
 }

@@ -1,0 +1,23 @@
+.UserPage {
+    margin: 0;
+    height: 90vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    background-color: var(--background-1);
+    color: var(--text-light);
+}
+
+.UserPage-aside-left {
+    background-color: var(--background-1);
+    display: flex;
+    flex-direction: column;
+}
+
+.UserPage-aside-right {
+    background-color: var(--background-3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}

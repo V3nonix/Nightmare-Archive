@@ -20,7 +20,7 @@ export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate
           </div>
           <div>
             <span>ARCHIVED: {archivedAt.toLocaleDateString()}</span><br/>
-            <span>{ archivedAt === editedAt ? 'Has not been edited.' : ('LAST EDITED:' + editedAt.toLocaleDateString()) }</span>
+            <span>{ archivedAt.getTime() === editedAt.getTime() ? 'Has not been edited.' : ('LAST EDITED:' + editedAt.toLocaleDateString()) }</span>
           </div>
         </div>
       </div>
