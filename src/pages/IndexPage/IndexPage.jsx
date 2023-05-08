@@ -2,7 +2,7 @@ import { useState, useEffect} from "react";
 import './IndexPage.css';
 
 
-export default function IndexPage({ user, alterUser, handleError, setNavType }) {
+export default function IndexPage({ user, handleError, setNavType }) {
     useEffect(() => {
         setNavType('IndexPage');
     }, [setNavType]);

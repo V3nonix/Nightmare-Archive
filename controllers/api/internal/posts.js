@@ -12,7 +12,7 @@ async function create(req, res) {
             imageKey: uploadRes.key,
             imageUrl: uploadRes.url
         });
-        res.json(post);
+        res.json(post._id);
     } catch (err) {
         errorHandler(__dirname, __filename, 'create', err, 500, res);
     }

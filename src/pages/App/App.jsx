@@ -45,24 +45,24 @@ export default function App() {
           <Route 
             path='/users/:id' 
             element={<UserPage user={user} 
-                      alterUser={alterUser}
                       handleError={handleError}
+                      navigate={navigate}
                       setNavType={setNavType}
                     />} 
           />
           <Route 
             path='/posts/:id' 
             element={<PostPage user={user} 
-                      alterUser={alterUser}
                       handleError={handleError}
+                      navigate={navigate}
                       setNavType={setNavType}
                     />} 
           />
           <Route 
             path='/index' 
             element={<IndexPage user={user} 
-                      alterUser={alterUser}
                       handleError={handleError}
+                      navigate={navigate}
                       setNavType={setNavType}
                     />} 
           />
