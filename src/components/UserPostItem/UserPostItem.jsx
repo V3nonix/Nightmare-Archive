@@ -30,7 +30,7 @@ export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate
 
           :
             <div>
-              <h3>{post.title}</h3>
+              <h3 className='UserPostItem-title'>{post.title}</h3>
               <button>Set to {post.public ? 'PRIVATE' : 'PUBLIC'}</button>
               <button>EDIT</button>
               <button onClick={toggleDeleteConfirm} className="button-red-dark">
@@ -43,9 +43,9 @@ export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate
 							onClick={() => navigate(`/posts/${post._id}`)}
 						/>
           </div>
-          <div>
+          <div className='UserPostItem-text-container'>
             <span>ARCHIVED: {archivedAt.toLocaleDateString()}</span><br/>
-            <span>{ archivedAt.getTime() === editedAt.getTime() ? 'Has not been edited.' : ('LAST EDITED:' + editedAt.toLocaleDateString()) }</span>
+            <span>{ archivedAt.getTime() === editedAt.getTime() ? 'Has not been edited.' : ('LAST EDITED: ' + editedAt.toLocaleDateString()) }</span>
           </div>
         </div>
       </div>
