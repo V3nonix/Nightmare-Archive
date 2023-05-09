@@ -18,15 +18,19 @@ export default function UserPage({ user, handleError, navigate, setNavType }) {
         setPosts(posts);
     }
 
-    async function removePost(removedPostId) {
+    function removePost(removedPostId) {
         let tempPosts = posts;
         setPosts(tempPosts.filter(post => post._id !== removedPostId));
+    }
+
+    function addPost(createdPost) {
+        setPosts(prevPosts => [createdPost, ...prevPosts]);
     }
 
     return (
         <main className='UserPage'>
             <aside className='UserPage-aside-left'>
-                <CreatePostForm user={user} />
+                <CreatePostForm addPost={addPost} />
             </aside>
             <aside className='UserPage-aside-right'>
                 <h2>Your ARCHIVE</h2>

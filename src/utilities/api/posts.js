@@ -5,16 +5,18 @@ import axios from 'axios';
 
 export async function sendPostData(reqFormData) {
     const headers= {
-        'Content-Type': 'multipart/form-data',
+      'Content-Type': 'multipart/form-data',
     }
     const token = getToken();
     if (token) {
-        headers.Authorization = `Bearer ${token}`;
+      headers.Authorization = `Bearer ${token}`;
     }
-    axios.post(`${BASE_URL}/create`, reqFormData, {headers})
-      .then(response => {
-        console.log(response.data);
-    });
+    try {
+      const response = await axios.post(`${BASE_URL}/create`, reqFormData, {headers});
+      return response.data;
+    } catch (err) {
+      throw err;
+    }
 }
 
 export async function deletePost(postId) {

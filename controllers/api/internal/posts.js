@@ -24,7 +24,7 @@ async function createPost(req, res) {
             imageKey: uploadRes.key,
             imageUrl: uploadRes.url
         });
-        res.json(post._id);
+        res.json(post);
     } catch (err) {
         errorHandler(__dirname, __filename, 'createPost', err, 500, res);
     }

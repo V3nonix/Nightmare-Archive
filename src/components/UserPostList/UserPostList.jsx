@@ -3,7 +3,7 @@ import UserPostItem from '../../components/UserPostItem/UserPostItem';
 
 
 export default function UserPostList({ posts, navigate, removePost }) {
-    
+
     return (
 				<>
 					{posts.length > 0 ?

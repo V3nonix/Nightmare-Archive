@@ -9,7 +9,7 @@ const initialForm = {
     error: ''
 };
 
-export default function CreatePostForm({ user, navigate }) {
+export default function CreatePostForm({ addPost }) {
     const [formData, setFormData] = useState(initialForm);
 
     function handleChange(evt) {
@@ -28,14 +28,15 @@ export default function CreatePostForm({ user, navigate }) {
       }
     };
 
-    function handleSubmit(evt) {
+    async function handleSubmit(evt) {
       evt.preventDefault();
       const reqFormData = new FormData();
       reqFormData.append('title', formData.title);
       reqFormData.append('content', formData.content);
       reqFormData.append('file', formData.file);
       try {
-        sendPostData(reqFormData);
+        const createRes = await sendPostData(reqFormData);
+        addPost(createRes);
       } catch (err) {
         setFormData({
           ...formData,
