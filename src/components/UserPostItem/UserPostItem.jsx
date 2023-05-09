@@ -2,7 +2,7 @@ import { useState } from "react";
 import './UserPostItem.css';
 import { deletePost, updatePost } from '../../utilities/api/posts';
 
-export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate, removePost }) {
+export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate, removePost, alterActiveUpdate }) {
     const [deleteConfirm, setDeleteConfirm] = useState(false);
 
     async function handleDelete() {
@@ -32,7 +32,7 @@ export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate
             <div>
               <h3 className='UserPostItem-title'>{post.title}</h3>
               <button>Set to {post.public ? 'PRIVATE' : 'PUBLIC'}</button>
-              <button>EDIT</button>
+              <button onClick={() => alterActiveUpdate(idx)}>EDIT</button>
               <button onClick={toggleDeleteConfirm} className="button-red-dark">
                 DELETE
               </button>

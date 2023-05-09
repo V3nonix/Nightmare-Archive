@@ -7,7 +7,7 @@ async function checkAccess(req, res, next) {
     try {
         const post =  await Post.findOne({ userId: req.user._id, _id: req.body.postId });
         if (!post) res.status(400).json('Access Denied!');
-        req.imageKey = post.imageKey
+        req.post = post
         return next();
     } catch (err) {
         errorHandler(__dirname, __filename, 'checkAccess', err, 500, res);
@@ -32,7 +32,8 @@ async function createPost(req, res) {
 
 async function updatePost(req, res) {
     try {
-
+        const post = await Post.findByIdAndUpdate(req.post._id, req.body.update);
+        res.json(post);
     } catch (err) {
         errorHandler(__dirname, __filename, 'updatePost', err, 500, res);
     }
@@ -40,7 +41,7 @@ async function updatePost(req, res) {
 
 async function deletePost(req, res) {
     try {
-        await deleteFile(req.imageKey);
+        await deleteFile(req.post.imageKey);
         await Post.findByIdAndDelete(req.body.postId);
         res.status(200).json('File deleted successfully');
     } catch (err) {

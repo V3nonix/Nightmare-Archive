@@ -46,9 +46,10 @@ export default function CreatePostForm({ addPost }) {
     }
     
     return (
-        <div className='FormPage-container'>
-          <form autoComplete='off' onSubmit={handleSubmit} className='FormPage-form'>
-              <div className='FormPage-sub-container'>
+        <div className='UserPage-container'>
+          <h3>CREATE Post Form</h3>
+          <form autoComplete='off' onSubmit={handleSubmit} className='UserPage-form'>
+              <div className='UserPage-sub-container'>
                 <label>Title: </label>
                 <input type='text' name='title'
                   value={formData.name}
@@ -58,15 +59,15 @@ export default function CreatePostForm({ addPost }) {
                   required
                 />
                 <label>Content: </label>
-                <input className='input-textarea' id='FormPage-textarea'
+                <input className='input-textarea' id='UserPage-textarea'
                   type='textarea' name='content'
                   minLength='1' maxLength='3000'
                   rows='15' cols='75'
                   onChange={handleChange} required
-                  value={formData.description}
+                  value={formData.content}
                 />
               </div>
-              <div className='FormPage-sub-container'>
+              <div className='UserPage-sub-container'>
                 <label>Upload Image: </label>
                 <input type="file" name='file' onChange={handleChange} />
               </div>

@@ -2,21 +2,23 @@ import { useState, useEffect} from "react";
 import { getUserPosts } from "../../utilities/api/posts";
 import './UserPage.css';
 import CreatePostForm from "../../components/CreatePostForm/CreatePostForm";
+import UpdatePostForm from "../../components/UpdatePostForm/UpdatePostForm";
 import UserPostList from "../../components/UserPostList/UserPostList";
 import Loader from "../../components/Loader/Loader";
 
 export default function UserPage({ user, handleError, navigate, setNavType }) {
     const [posts, setPosts] = useState(null);
+    const [activeUpdate, setActiveUpdate] = useState(null);
 
-    useEffect(() => {
-        setNavType('UserPage');
-        updatePosts();
-    }, [setNavType]);
-
-    async function updatePosts() {
+    async function getAndSetPosts() {
         const posts = await getUserPosts();
         setPosts(posts);
     }
+
+    useEffect(() => {
+        setNavType('UserPage');
+        getAndSetPosts();
+    }, [setNavType]);
 
     function removePost(removedPostId) {
         let tempPosts = posts;
@@ -27,22 +29,42 @@ export default function UserPage({ user, handleError, navigate, setNavType }) {
         setPosts(prevPosts => [createdPost, ...prevPosts]);
     }
 
-    return (
-        <main className='UserPage'>
-            <aside className='UserPage-aside-left'>
-                <CreatePostForm addPost={addPost} />
-            </aside>
-            <aside className='UserPage-aside-right'>
-                <h2>Your ARCHIVE</h2>
-                { posts ?
-                        <UserPostList posts={posts} navigate={navigate}
-                            removePost={removePost}
-                        />
-                    :
-                        <Loader />
-                }
-            </aside>
+    function replacePost(updatedPost, idx) {
+        let tempPosts = posts;
+        tempPosts[idx] = updatedPost;
+        setPosts(tempPosts);
+        setActiveUpdate(null);
+    }
 
-        </main>
+    function alterActiveUpdate(val) {
+        setActiveUpdate(val);
+    }
+
+    return (
+      <main className='UserPage'>
+        <aside className='UserPage-aside-left'>
+          { activeUpdate || activeUpdate === 0 ?
+            <UpdatePostForm replacePost={replacePost} 
+              targetPost={posts[activeUpdate]}
+              idx={activeUpdate}
+              alterActiveUpdate={alterActiveUpdate}
+            />
+          :
+            <>
+              <CreatePostForm addPost={addPost} />
+            </>
+          }
+        </aside>
+        <aside className='UserPage-aside-right'>
+          <h2>Your ARCHIVE</h2>
+          { posts ?
+            <UserPostList posts={posts} navigate={navigate}
+              removePost={removePost} alterActiveUpdate={alterActiveUpdate}
+            />
+          :
+            <Loader />
+          }
+        </aside>
+      </main>
     );
 }

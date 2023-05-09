@@ -23,8 +23,8 @@ export async function deletePost(postId) {
     return sendRequest(`${BASE_URL}/delete`, 'POST', {postId});
 }
 
-export async function updatePost(postFormData) {
-    return sendRequest(`${BASE_URL}/update`, 'PUT', {postFormData});
+export async function updatePost(postId, update) {
+    return sendRequest(`${BASE_URL}/update`, 'PUT', {postId, update});
 }
 
 export async function getUserPosts() {
