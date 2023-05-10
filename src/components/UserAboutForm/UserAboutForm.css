@@ -1,0 +1,19 @@
+.UserAboutForm {
+    border: 0;
+    padding: -3vmin;
+    margin: 0;
+    height: min-content;
+    align-self: center;
+    align-items: center;
+}
+
+.UserAboutForm > textarea {
+    width: 40vmin;
+    height: 22vmin;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
+.UserAboutForm > * {
+    margin: 0.75vmin;
+}
