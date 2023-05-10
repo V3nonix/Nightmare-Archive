@@ -15,6 +15,10 @@ export default function UserProfile({ userProfile, handleError, userCreatedAt}) 
     setFormOpen(!formOpen);
   }
 
+  function alterUserAbout(newUserAbout) {
+    setUserAbout(newUserAbout);
+  }
+
   return (
     <div className='UserProfile'>
       <h6><span>Account created: </span>{userCreatedAt.toLocaleDateString()}</h6>
