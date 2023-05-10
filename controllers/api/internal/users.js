@@ -1,4 +1,5 @@
 const User = require('../../../models/user/user');
+const Profile = require('../../../models/user/profile');
 
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -17,6 +18,7 @@ function createJWT(user) {
 async function create(req, res) {
     try {
         const user = await User.create(req.body);
+        await Profile.create({ user: user._id });
         const token = createJWT(user);
         res.json(token);
     } catch (err) {

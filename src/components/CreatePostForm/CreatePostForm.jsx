@@ -37,6 +37,7 @@ export default function CreatePostForm({ addPost }) {
       try {
         const createRes = await sendPostData(reqFormData);
         addPost(createRes);
+        setFormData(initialForm);
       } catch (err) {
         setFormData({
           ...formData,

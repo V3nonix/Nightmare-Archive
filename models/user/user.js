@@ -12,7 +12,6 @@ const userSchema = new Schema({
         maxLength: 32,
         minLength: 3,
     },
-    avatar: { type: String, default: ''},
     email: {
       type: String,
       unique: [true, 'An account with this email already exists!'],
@@ -48,6 +47,5 @@ userSchema.pre('save', async function(next) {
     this.password = await bcrypt.hash(this.password, saltRounds);
     return next();
 });
-
 
 module.exports = mongoose.model('User', userSchema);

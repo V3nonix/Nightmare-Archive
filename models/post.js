@@ -34,10 +34,10 @@ const postSchema = new Schema({
         default: false
     },
     reactions: {
-        heart: { type: Number, default: 0},
-        like: { type: Number, default: 0},
-        laugh: { type: Number, default: 0}
-    }
+        heart: { type: [Schema.Types.ObjectId], ref: "User" },
+        like: { type:   [Schema.Types.ObjectId], ref: "User" },
+        laugh: { type: [Schema.Types.ObjectId], ref: "User" }
+    },
 }, {
     timestamps: true,
     toJSON: { 
@@ -45,6 +45,7 @@ const postSchema = new Schema({
         transform: function(doc, ret) {
             delete ret.__v;
             delete ret.imageUrl;
+            delete ret.imageKey;
         }
     }
 });
