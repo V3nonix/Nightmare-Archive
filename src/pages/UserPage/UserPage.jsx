@@ -12,6 +12,7 @@ export default function UserPage({ user, handleError, navigate, setNavType }) {
 
     async function getAndSetPosts() {
         const posts = await getUserPosts();
+        console.log(posts);
         setPosts(posts);
     }
 

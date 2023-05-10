@@ -3,7 +3,7 @@ const path = require('path');
 const logger = require('morgan');
 const jwt = require('jsonwebtoken');
 
-const { checkS3Bucket } = require('./config/aws');
+const { checkS3Bucket } = require('./config/awsClientS3');
 
 require('dotenv').config();
 require('./config/database');

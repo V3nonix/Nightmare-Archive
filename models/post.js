@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const signCloudFrontUrl = require('../config/awsClientSigner')
+
 // Post Schema:
 const postSchema = new Schema({
     title: {   
@@ -42,11 +44,23 @@ const postSchema = new Schema({
         virtuals: true,
         transform: function(doc, ret) {
             delete ret.__v;
+            delete ret.imageUrl;
         }
     }
 });
 
 /* Post Schema VIRTUALS */
+
+postSchema.virtual('signedImageUrl').get(function() {
+    try {
+        const signedUrl = signCloudFrontUrl(this.imageUrl);
+        console.log(signedUrl);
+        return signedUrl;
+    } catch (err) {
+        console.error('Error signing CloudFront URL:', err);
+        return false;
+    }
+});
 
 /* Post Schema STATICS */
 

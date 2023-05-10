@@ -2,7 +2,7 @@ const { S3Client, PutObjectCommand, DeleteObjectCommand, HeadBucketCommand } = r
 const errorHandler = require('../utils/errorHandler');
 const { v4: uuidv4 } = require('uuid');
 
-require('dotenv').config()
+require('dotenv').config();
 
 const s3 = new S3Client({
     region: process.env.AWS_REGION,
@@ -23,10 +23,10 @@ async function uploadFile(file) {
     try {
         await s3.send(command);
         console.log('\x1B[32mSuccess! \u001b[0m| File uploaded successfully.');
-        return {key, url: `https://${process.env.AWS_S3_BUCKET}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`}
+        return {key, url: `${process.env.AWS_CLOUDFRONT_URL}/${key}`}
     } catch (err) {
         errorHandler(__dirname, __filename, 'uploadFile', err);
-        throw new Error('Error uploading file to S3')
+        throw new Error('Error uploading file to S3');
     }
 }
 

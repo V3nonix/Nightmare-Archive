@@ -1,6 +1,6 @@
 import { useState } from "react";
 import './UserPostItem.css';
-import { deletePost, updatePost } from '../../utilities/api/posts';
+import { deletePost } from '../../utilities/api/posts';
 
 export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate, removePost, alterActiveUpdate }) {
     const [deleteConfirm, setDeleteConfirm] = useState(false);
@@ -39,7 +39,7 @@ export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate
             </div>
           }
           <div className='UserPostItem-image-container'>
-            <div className='UserPostItem-image' style={{backgroundImage: `url(${post.imageUrl})`}}
+            <div className='UserPostItem-image' style={{backgroundImage: `url(${post.signedImageUrl})`}}
 							onClick={() => navigate(`/posts/${post._id}`)}
 						/>
           </div>

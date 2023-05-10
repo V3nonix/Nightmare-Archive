@@ -1,6 +1,6 @@
 const Post = require('../../../models/post');
 
-const { uploadFile, deleteFile } = require('../../../config/aws');
+const { uploadFile, deleteFile } = require('../../../config/awsClientS3');
 const errorHandler = require('../../../utils/errorHandler');
 
 async function checkAccess(req, res, next) {
