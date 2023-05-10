@@ -54,7 +54,6 @@ const postSchema = new Schema({
 postSchema.virtual('signedImageUrl').get(function() {
     try {
         const signedUrl = signCloudFrontUrl(this.imageUrl);
-        console.log(signedUrl);
         return signedUrl;
     } catch (err) {
         console.error('Error signing CloudFront URL:', err);
