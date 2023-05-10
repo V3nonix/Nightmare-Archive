@@ -11,5 +11,9 @@ export function login(credentials) {
 }
 
 export function updateProfile(update) {
-  return sendRequest(`${BASE_URL}/profile/`, 'POST', update);
+  return sendRequest(`${BASE_URL}/profile/update`, 'POST', update);
+}
+
+export function getProfile() {
+  return sendRequest(`${BASE_URL}/profile`);
 }
