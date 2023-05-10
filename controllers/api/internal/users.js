@@ -18,7 +18,7 @@ function createJWT(user) {
 async function create(req, res) {
     try {
         const user = await User.create(req.body);
-        await Profile.create({ user: user._id });
+        await Profile.create({ userId: user._id });
         const token = createJWT(user);
         res.json(token);
     } catch (err) {
@@ -48,7 +48,9 @@ async function login(req, res) {
 
 async function updateProfile(req, res) {
     try {
-        const profile =  await Profile.findOneAndUpdate({ userId: req.user._id }, req.update, { new: true });
+        console.log(req.body.update);
+        const profile =  await Profile.findOneAndUpdate({ userId: req.user._id }, req.body.update);
+        console.log(profile);
         res.json(profile);
     } catch (err) {
         errorHandler(__dirname, __filename, 'updateProfile', err, 500, res);
@@ -57,7 +59,7 @@ async function updateProfile(req, res) {
 
 async function getProfile(req, res) {
     try {
-        const profile = await Profile.find({ userId: req.user._id });
+        const profile = await Profile.findOne({ userId: req.user._id });
         res.json(profile);
     } catch (err) {
         errorHandler(__dirname, __filename, 'getProfile', err, 500, res);

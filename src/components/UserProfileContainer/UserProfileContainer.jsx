@@ -8,13 +8,11 @@ import Loader from "../Loader/Loader";
 export default function UserProfileContainer({ user, handleError}) {
     const [userProfile, setUserProfile] = useState(null);
     
-    async function getAndSetUserProfile() {
+    useEffect(() => {
+      (async () => {
         const profileRes = await getProfile();
         setUserProfile(profileRes);
-    }
-
-    useEffect(() => {
-        getAndSetUserProfile();
+      })();
     }, []);
     
     return (

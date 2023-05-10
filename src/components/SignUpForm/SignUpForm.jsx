@@ -1,10 +1,7 @@
 import { useState } from 'react';
-// Imports stylesheet(s):
 import './SignUpForm.css';
-// Imports Users Utilities:
 import { signUp } from '../../utilities/usersService';
 
-// Initial State:
 const initialForm = {
     name: '',
     email: '',
@@ -14,11 +11,9 @@ const initialForm = {
 };
 
 export default function SignUpForm({ alterUser }) {
-    // Sets state:
     const [formData, setFormData] = useState(initialForm);
-    // State related variables:
     let disabled = formData.password !== formData.confirm;
-    // Event handler functions:
+
     function handleChange(evt) {
         setFormData({
             ...formData,
@@ -27,26 +22,20 @@ export default function SignUpForm({ alterUser }) {
         });
     };
     async function handleSubmit(evt) {
-        // Prevent default form submission: 
         evt.preventDefault();
-        // Try block:
         try {
-          // Excludes unneeded properties:
           const userData = {
             name: formData.name,
             email: formData.email,
             password: formData.password
           };
-          // Async user creation:
           const user = await signUp(userData);
-          // Sets user state to new user:
           alterUser(user);
         } catch {
-          // Error catch: 
           setFormData({ error: 'Sign Up Failed - Try Again' });
         }
       };    
-    // Rendered component:
+
     return (
         <div>
         <div className='SignUpForm'>

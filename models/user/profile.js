@@ -27,6 +27,7 @@ const profileSchema = new Schema({
 
 profileSchema.virtual('signedAvatarUrl').get(function() {
     try {
+        if (!this.avatarUrl) return false;
         const signedUrl = signCloudFrontUrl(this.avatarUrl);
         return signedUrl;
     } catch (err) {

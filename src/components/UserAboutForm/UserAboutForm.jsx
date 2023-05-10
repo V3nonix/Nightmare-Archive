@@ -12,9 +12,10 @@ export default function UserAboutForm({ userAbout, alterUserAbout, alterFormOpen
     async function handleSubmit(evt) {
         evt.preventDefault();
         try {
-            const updateRes = await updateProfile(formData);
-            alterUserAbout(updateRes);
-            alterFormOpen();
+            const updateRes = await updateProfile({ about: formData });
+            console.log(updateRes);
+            // alterUserAbout(updateRes);
+            // alterFormOpen();
         } catch(err) {
             handleError(err);
         }

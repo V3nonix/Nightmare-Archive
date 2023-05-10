@@ -12,6 +12,7 @@ export default function UserProfile({ userProfile, handleError, userCreatedAt}) 
   }
 
   function alterFormOpen() {
+    console.log(userProfile.about);
     setFormOpen(!formOpen);
   }
 
@@ -28,7 +29,7 @@ export default function UserProfile({ userProfile, handleError, userCreatedAt}) 
           </button>
           <span> About:</span>
           { formOpen ? 
-            <UserAboutForm  userAbout={userAbout} alterUserAbout={alterUserAbout}
+            <UserAboutForm  userAbout={userProfile.about} alterUserAbout={alterUserAbout}
                 alterFormOpen={alterFormOpen} handleError={handleError}
             />
           :

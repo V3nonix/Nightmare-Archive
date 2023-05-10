@@ -4,20 +4,19 @@ import './UserPage.css';
 import CreatePostForm from "../../components/CreatePostForm/CreatePostForm";
 import UpdatePostForm from "../../components/UpdatePostForm/UpdatePostForm";
 import UserPostList from "../../components/UserPostList/UserPostList";
+import UserProfileContainer from "../../components/UserProfileContainer/UserProfileContainer";
 import Loader from "../../components/Loader/Loader";
 
 export default function UserPage({ user, handleError, navigate, setNavType }) {
     const [posts, setPosts] = useState(null);
     const [activeUpdate, setActiveUpdate] = useState(null);
 
-    async function getAndSetPosts() {
-        const posts = await getUserPosts();
-        setPosts(posts);
-    }
-
     useEffect(() => {
         setNavType('UserPage');
-        getAndSetPosts();
+        (async () => {
+          const posts = await getUserPosts();
+          setPosts(posts);
+        })();
     }, [setNavType]);
 
     function removePost(removedPostId) {
@@ -51,6 +50,7 @@ export default function UserPage({ user, handleError, navigate, setNavType }) {
             />
           :
             <>
+              <UserProfileContainer user={user} handleError={handleError}/>
               <CreatePostForm addPost={addPost} />
             </>
           }
