@@ -46,8 +46,27 @@ async function login(req, res) {
     }
 }
 
+async function updateProfile(req, res) {
+    try {
+        const profile =  await Profile.findOneAndUpdate({ userId: req.user._id }, req.update, { new: true });
+        res.json(profile);
+    } catch (err) {
+        errorHandler(__dirname, __filename, 'updateProfile', err, 500, res);
+    }
+}
+
+async function getProfile(req, res) {
+    try {
+        const profile = await Profile.find({ userId: req.user._id });
+        res.json(profile);
+    } catch (err) {
+        errorHandler(__dirname, __filename, 'getProfile', err, 500, res);
+    }
+}
 
 module.exports = {
     create,
     login,
+    updateProfile,
+    getProfile,
 };

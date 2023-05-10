@@ -32,7 +32,7 @@ async function createPost(req, res) {
 
 async function updatePost(req, res) {
     try {
-        const post = await Post.findByIdAndUpdate(req.post._id, req.body.update);
+        const post = await Post.findByIdAndUpdate(req.post._id, req.body.update, { new: true });
         res.json(post);
     } catch (err) {
         errorHandler(__dirname, __filename, 'updatePost', err, 500, res);
