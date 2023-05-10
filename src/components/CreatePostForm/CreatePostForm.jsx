@@ -11,6 +11,7 @@ const initialForm = {
 
 export default function CreatePostForm({ addPost }) {
     const [formData, setFormData] = useState(initialForm);
+    const [loading, setLoading] = useState(false);
 
     function handleChange(evt) {
       if (evt.target.type === 'file') {
@@ -35,6 +36,7 @@ export default function CreatePostForm({ addPost }) {
       reqFormData.append('content', formData.content);
       reqFormData.append('file', formData.file);
       try {
+
         const createRes = await sendPostData(reqFormData);
         addPost(createRes);
         setFormData(initialForm);
@@ -47,7 +49,7 @@ export default function CreatePostForm({ addPost }) {
     }
     
     return (
-        <div className='UserPage-container'>
+        <div className='UserPage-container' id='CreatePostForm'>
           <h3>CREATE Post Form</h3>
           <form autoComplete='off' onSubmit={handleSubmit} className='UserPage-form'>
               <div className='UserPage-sub-container'>
@@ -60,7 +62,7 @@ export default function CreatePostForm({ addPost }) {
                   required
                 />
                 <label>Content: </label>
-                <input className='input-textarea' id='UserPage-textarea'
+                <input className='input-textarea' id='CreatePostForm-textarea'
                   type='textarea' name='content'
                   minLength='1' maxLength='3000'
                   rows='15' cols='75'
@@ -70,7 +72,7 @@ export default function CreatePostForm({ addPost }) {
               </div>
               <div className='UserPage-sub-container'>
                 <label>Upload Image: </label>
-                <input type="file" name='file' onChange={handleChange} />
+                <input id='CreatePostForm-file-input' type="file" name='file' onChange={handleChange}/>
               </div>
             <button type='submit'>CREATE</button>
           </form>

@@ -12,7 +12,6 @@ export default function UserProfile({ userProfile, handleError, userCreatedAt}) 
   }
 
   function alterFormOpen() {
-    console.log(userProfile.about);
     setFormOpen(!formOpen);
   }
 

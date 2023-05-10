@@ -70,13 +70,6 @@ body {
   overflow-y: scroll;
 }
 
-.chat-page {
-  margin: 0;
-  height: 90vh;
-  width: 100vw;
-  background-color: var(--background-1);
-}
-
 /* General Forms */
 
 button:disabled, form:invalid button[type="submit"] {

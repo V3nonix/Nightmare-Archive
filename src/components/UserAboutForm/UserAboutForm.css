@@ -8,8 +8,8 @@
 }
 
 .UserAboutForm > textarea {
-    width: 40vmin;
-    height: 22vmin;
+    width: 95%;
+    height: 20vmin;
     scroll-behavior: smooth;
     overflow-y: scroll;
 }

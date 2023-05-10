@@ -1,0 +1,14 @@
+#CreatePostForm-file-input {
+    width: 200px;
+}
+
+#CreatePostForm {
+    width: 70%;
+}
+
+#CreatePostForm-textarea {
+    width: 90%;
+    height: 10vmin;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}

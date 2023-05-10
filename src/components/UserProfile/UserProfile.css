@@ -7,14 +7,13 @@ span {
 }
 
 #user-about-container{
-    width: 45vmin;
+    width: 90%;
 }
 
 #user-about-p {
-    width: 42vmin;
-    margin: 0;
+    text-align: left;
     margin-top: 0.5vmin;
-    max-height: 22vmin;
+    max-height: 20vmin;
     height:fit-content;
     scroll-behavior: smooth;
     overflow-y: auto;
