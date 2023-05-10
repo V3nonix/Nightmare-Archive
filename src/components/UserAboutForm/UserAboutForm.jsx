@@ -13,9 +13,8 @@ export default function UserAboutForm({ userAbout, alterUserAbout, alterFormOpen
         evt.preventDefault();
         try {
             const updateRes = await updateProfile({ about: formData });
-            console.log(updateRes);
-            // alterUserAbout(updateRes);
-            // alterFormOpen();
+            alterUserAbout(updateRes.about);
+            alterFormOpen();
         } catch(err) {
             handleError(err);
         }

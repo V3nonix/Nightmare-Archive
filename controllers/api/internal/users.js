@@ -48,9 +48,7 @@ async function login(req, res) {
 
 async function updateProfile(req, res) {
     try {
-        console.log(req.body.update);
-        const profile =  await Profile.findOneAndUpdate({ userId: req.user._id }, req.body.update);
-        console.log(profile);
+        const profile =  await Profile.findOneAndUpdate({ userId: req.user._id }, req.body.update, { new: true });
         res.json(profile);
     } catch (err) {
         errorHandler(__dirname, __filename, 'updateProfile', err, 500, res);
