@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './UserAboutForm.css';
 import { updateProfile } from '../../utilities/api/users';
 
-export default function UserAboutForm({ userAbout, alterUserAbout, setFormOpen, handleError, }) {
+export default function UserAboutForm({ userAbout, alterUserAbout, alterFormOpen, handleError, }) {
     const [formData, setFormData] = useState(userAbout);
 
     function handleChange(evt) {
@@ -14,7 +14,7 @@ export default function UserAboutForm({ userAbout, alterUserAbout, setFormOpen, 
         try {
             const updateRes = await updateProfile(formData);
             alterUserAbout(updateRes);
-            setFormOpen(false);
+            alterFormOpen();
         } catch(err) {
             handleError(err);
         }
@@ -22,7 +22,7 @@ export default function UserAboutForm({ userAbout, alterUserAbout, setFormOpen, 
 
     function handleCancel(evt) {
         evt.preventDefault();
-        setFormOpen(false);
+        alterFormOpen();
     }
 
     return (
