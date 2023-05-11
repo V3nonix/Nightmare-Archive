@@ -1,15 +1,15 @@
 :root {
-  --accent-1: #5d4e3d;
-  --accent-2: #96876f;
+  --accent-1: #9a9692;
+  --accent-2: #888888;
   --accent-3: #84330b;
   --accent-4: #5a2409;
   --accent-5: #280f03;
   --text-dark: #0c0704;
-  --text-light: #aea799;
+  --text-light: #afafaf;
   --text-light-aux: #e7dece;
   --background-1: #11100f;
-  --background-2: #2c2a27;
-  --background-3: #47423b;
+  --background-2: #363636;
+  --background-3: #494949;
 }
 
 @font-face {
@@ -98,8 +98,9 @@ form > * {
   margin: 0.5vmin;
 }
 
-form > *:focus {
-  outline: 0.2vmin solid var(--accent-3);
+input:focus {
+  outline: none;
+  box-shadow: 0 0 2px 2px var(--accent-3) inset;
 }
 
 .input-textarea {

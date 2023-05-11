@@ -42,6 +42,7 @@ export default function UserPage({ user, handleError, navigate, setNavType }) {
     return (
       <main className='UserPage'>
         <aside className='UserPage-aside-left'>
+          <UserProfileContainer user={user} handleError={handleError}/>
           { activeUpdate || activeUpdate === 0 ?
             <UpdatePostForm replacePost={replacePost} 
               targetPost={posts[activeUpdate]}
@@ -49,10 +50,7 @@ export default function UserPage({ user, handleError, navigate, setNavType }) {
               alterActiveUpdate={alterActiveUpdate}
             />
           :
-            <>
-              <UserProfileContainer user={user} handleError={handleError}/>
-              <CreatePostForm addPost={addPost} />
-            </>
+            <CreatePostForm addPost={addPost} />
           }
         </aside>
         <aside className='UserPage-aside-right'>

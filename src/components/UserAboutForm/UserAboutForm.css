@@ -14,6 +14,11 @@
     overflow-y: scroll;
 }
 
+.UserAboutForm > textarea:focus {
+    outline: none;
+    box-shadow: 0 0 2px 2px var(--accent-3) inset;
+}
+
 .UserAboutForm > * {
     margin: 0.75vmin;
 }

@@ -26,6 +26,11 @@ export default function UpdatePostForm({ replacePost, targetPost, alterActiveUpd
         }
     };
 
+    function handleCancel(evt) {
+        evt.preventDefault();
+        alterActiveUpdate(null);
+    }
+
     async function handleSubmit(evt) {
         evt.preventDefault();
         try {
@@ -45,10 +50,10 @@ export default function UpdatePostForm({ replacePost, targetPost, alterActiveUpd
     return (
         <div className='UserPage-container'>
           <h3>UPDATE Post Form</h3>
-          <form autoComplete='off' onSubmit={handleSubmit} className='UserPage-form'>
+          <form autoComplete='off' className='UserPage-form'>
                 <label>Title: </label>
                 <input type='text' name='title'
-                  value={formData.name}
+                  value={formData.title}
                   minLength='1' maxLength='32'
                   onChange={handleChange}
                   placeholder={'Post Title'}
@@ -62,7 +67,11 @@ export default function UpdatePostForm({ replacePost, targetPost, alterActiveUpd
                   onChange={handleChange} required
                   value={formData.content}
                 />
-            <button type='submit'>UPDATE</button>
+            <div>
+              <button onClick={handleSubmit} type='submit'>UPDATE</button>
+              <button className='button-red-dark' disabled={false}
+                type='submit' onClick={handleCancel}>CANCEL</button>
+            </div>
           </form>
           {formData.error && <p className='error-message'>&nbsp;{formData.error}</p>}
         </div>
