@@ -5,11 +5,11 @@
     display: grid;
     grid-template-columns: 35% 65%;
     background-color: var(--background-1);
+    background-attachment: fixed;
     color: var(--text-light);
 }
 
 .UserPage-aside-left {
-    background-color: var(--background-1);
     display: flex;
     flex-direction: column;
     justify-content: center;

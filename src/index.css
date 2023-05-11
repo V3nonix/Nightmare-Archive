@@ -10,6 +10,7 @@
   --background-1: #11100f;
   --background-2: #363636;
   --background-3: #494949;
+  --transparent: rgba(0, 0, 0, 0);
 }
 
 @font-face {

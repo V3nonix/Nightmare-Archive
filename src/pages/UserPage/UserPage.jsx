@@ -6,6 +6,7 @@ import UpdatePostForm from "../../components/UpdatePostForm/UpdatePostForm";
 import UserPostList from "../../components/UserPostList/UserPostList";
 import UserProfileContainer from "../../components/UserProfileContainer/UserProfileContainer";
 import Loader from "../../components/Loader/Loader";
+import background1 from '../../images/background_1.gif'
 
 export default function UserPage({ user, handleError, navigate, setNavType }) {
     const [posts, setPosts] = useState(null);
@@ -40,7 +41,7 @@ export default function UserPage({ user, handleError, navigate, setNavType }) {
     }
 
     return (
-      <main className='UserPage'>
+      <main className='UserPage' style={{ backgroundImage: `url(${background1})` }}>
         <aside className='UserPage-aside-left'>
           <UserProfileContainer user={user} handleError={handleError}/>
           { activeUpdate || activeUpdate === 0 ?
