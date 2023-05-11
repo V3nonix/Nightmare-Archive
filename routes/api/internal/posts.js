@@ -11,5 +11,6 @@ router.post('/delete', postsCtrl.checkAccess, postsCtrl.delete);
 router.put('/update', postsCtrl.checkAccess, postsCtrl.update);
 
 router.get('/user', postsCtrl.getUserPosts);
+router.get('/:id', postsCtrl.getPost);
 
 module.exports = router;

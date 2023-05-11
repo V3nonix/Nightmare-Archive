@@ -34,10 +34,10 @@ const postSchema = new Schema({
         default: false
     },
     reactions: {
-        heart: { type: [Schema.Types.ObjectId], ref: "User" },
-        like: { type:   [Schema.Types.ObjectId], ref: "User" },
-        laugh: { type: [Schema.Types.ObjectId], ref: "User" }
-    },
+        heart: [Schema.Types.ObjectId],
+        laugh: [Schema.Types.ObjectId],
+        like: [Schema.Types.ObjectId]
+    }
 }, {
     timestamps: true,
     toJSON: { 
