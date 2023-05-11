@@ -1,0 +1,81 @@
+.UserPage {
+    margin: 0;
+    height: 90vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    background-color: var(--background-1);
+    background-attachment: fixed;
+    color: var(--text-light);
+}
+
+.UserPage-aside-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.UserPage-aside-right {
+    background-color: var(--background-3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.UserPage-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vmin;
+    border: 0.1rem inset var(--accent-2);
+}
+
+.UserPage-form > button {
+    max-width: 20vmin;
+}
+
+.UserPage-form-spacer {
+    background-color: var(--background-1);
+    border: 0.1rem inset var(--accent-2);    
+    display: flex;
+    padding: 0.75vmin;
+    margin: 0.75vmin;
+    align-items: center;
+    justify-content: center;
+}
+
+.UserPage-container {
+    margin: 0.5rem;
+    background-color: var(--background-3);
+    border: 0.1rem outset var(--accent-2);
+    padding: 2vmin;
+    height: min-content;
+    width: fit-content;
+}
+
+.UserPage-sub-container {
+    background-color: var(--background-2);
+    border: 0.1rem outset var(--accent-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1vmin;
+    padding: 0.5vmin;
+    height: fit-content;
+    width: 85%;
+}
+
+.UserPage-sub-container > label {
+    max-width: 20vmin;
+    margin: 0.75vmin;
+}
+
+.UserPage-textarea {
+    margin: 0.5vmin 2vmin 2vmin 2vmin;
+    border: 0.1rem inset var(--accent-1);
+    width: 90%;  
+    height: 15vmin;
+}

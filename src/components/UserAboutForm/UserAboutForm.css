@@ -1,0 +1,24 @@
+.UserAboutForm {
+    border: 0;
+    padding: -3vmin;
+    margin: 0;
+    height: min-content;
+    align-self: center;
+    align-items: center;
+}
+
+.UserAboutForm > textarea {
+    width: 95%;
+    height: 20vmin;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
+.UserAboutForm > textarea:focus {
+    outline: none;
+    box-shadow: 0 0 2px 2px var(--accent-3) inset;
+}
+
+.UserAboutForm > * {
+    margin: 0.75vmin;
+}

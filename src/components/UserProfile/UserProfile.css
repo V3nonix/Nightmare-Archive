@@ -1,0 +1,21 @@
+.UserProfile {
+    color: var(--text-light-aux);
+}
+
+span {
+    color: var(--text-light);
+}
+
+#user-about-container{
+    width: 90%;
+}
+
+#user-about-p {
+    text-align: left;
+    margin-top: 0.5vmin;
+    max-height: 20vmin;
+    height:fit-content;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    white-space: pre-line;
+}

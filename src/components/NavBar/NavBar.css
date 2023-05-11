@@ -1,0 +1,17 @@
+.NavBar {
+    width: 25%;
+    display: grid;
+    justify-content: center;
+    justify-self: center;
+    grid-template-columns: repeat(3, 11vmin);
+}
+
+@media screen and (width: 500px) {
+    .NavBar {
+        width: 25%;
+        display: flex;
+        justify-content: center;
+        justify-self: center;
+        flex-direction: column;
+    }
+}

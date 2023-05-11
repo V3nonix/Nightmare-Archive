@@ -1,0 +1,12 @@
+.UserProfileContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1vmin;
+    width: 70%;
+    height: fit-content;
+    background-color: var(--background-3);
+    border: 0.1rem outset var(--accent-2);
+    padding: 1vmin;
+}

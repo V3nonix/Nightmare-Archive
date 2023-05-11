@@ -1,0 +1,16 @@
+.UserAvatar-large {
+    height: 18vmin;
+    width: 18vmin;
+    border: .6vmin solid var(--accent-2);
+    border-radius: 50%;
+}
+
+.UserAvatar-large:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.UserAvatar-image {
+    background-size: cover;
+    background-position: center center
+}
