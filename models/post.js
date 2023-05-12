@@ -50,6 +50,13 @@ const postSchema = new Schema({
     }
 });
 
+/* Post Schema INDICES */
+
+postSchema.index(
+    { createdAt: -1 }, 
+    { partialFilterExpression: { public: true } }
+);
+
 /* Post Schema VIRTUALS */
 
 postSchema.virtual('signedImageUrl').get(function() {
@@ -61,9 +68,5 @@ postSchema.virtual('signedImageUrl').get(function() {
         return false;
     }
 });
-
-/* Post Schema STATICS */
-
-/* Post Schema MIDDLEWARE */
 
 module.exports = mongoose.model('Post', postSchema);

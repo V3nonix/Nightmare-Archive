@@ -49,6 +49,15 @@ async function deletePost(req, res) {
     }
 }
 
+async function getPublicPosts(req, res) {
+    try {
+        const posts = await Post.find({ public: true }).sort({ createdAt: -1 }).limit(25);
+        res.json(posts);
+    } catch (err) {
+        errorHandler(__dirname, __filename, 'getPublicPosts', err, 500, res);
+    }
+}
+
 async function getUserPosts(req, res) {
     try {
         const posts = await Post.find({ userId: req.user._id });
@@ -66,7 +75,7 @@ async function getPost(req, res) {
         if (post.public) await post.populate({ path : 'comments', populate : {path : 'userId'} });
         res.json(post);
     } catch (err) {
-        errorHandler(__dirname, __filename, 'getUserPosts', err, 500, res);
+        errorHandler(__dirname, __filename, 'getPost', err, 500, res);
     }
 }
 
@@ -75,6 +84,7 @@ module.exports = {
     create: createPost,
     update: updatePost,
     delete: deletePost,
+    getPublicPosts,
     getUserPosts,
     getPost
 };

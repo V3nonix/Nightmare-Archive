@@ -10,7 +10,7 @@ export default function NavBar({ type, user, alterUser, navigate }) {
   return (
       <nav className='NavBar'>
         { type === 'UserPage' ?
-            <button onClick={() =>  navigate('/index')}>ALL POSTS</button>    
+            <button onClick={() =>  navigate('/index')}>PUBLIC PAGE</button>    
         : type === 'IndexPage' ?
             <button onClick={() => navigate(`/users/${user.name}`)}>USER PAGE</button>
         :
