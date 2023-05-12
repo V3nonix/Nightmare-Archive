@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createSearchParams } from "react-router-dom";
 import './UserPostItem.css';
 import { deletePost } from '../../utilities/api/posts';
 
@@ -8,6 +9,13 @@ export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate
     async function handleDelete() {
         const deleteRes = await deletePost(post._id);
         if (deleteRes === 'File deleted successfully') removePost(post._id);
+    }
+
+    function navigateToPost() {
+        navigate({
+          pathname: `/posts/${post._id}`, 
+          search: `?${createSearchParams({ publicStatus: post.public })}`
+        });
     }
 
     function toggleDeleteConfirm() {
@@ -40,7 +48,7 @@ export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate
           }
           <div className='UserPostItem-image-container'>
             <div className='UserPostItem-image' style={{backgroundImage: `url(${post.signedImageUrl})`}}
-							onClick={() => navigate(`/posts/${post._id}`)}
+							onClick={navigateToPost}
 						/>
           </div>
           <div className='UserPostItem-text-container'>

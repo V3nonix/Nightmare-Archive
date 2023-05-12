@@ -60,8 +60,7 @@ async function getUserPosts(req, res) {
 
 async function getPost(req, res) {
     try {
-        console.log(`Post ID: [${req.params.id}], Public Status: [${req.query.public}]`);
-        const post = await Post.findOne({ _id: req.params.id, public: req.query.public });
+        const post = await Post.findOne({ _id: req.params.id, public: req.query.publicStatus });
         if (post === null) res.status(404).json('Post not found!');
         if (!post.public && !post.userId.equals(req.user._id)) res.status(403).json('Access Denied!');
         if (post.public) await post.populate({ path : 'comments', populate : {path : 'userId'} });

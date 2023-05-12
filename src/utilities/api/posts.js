@@ -31,6 +31,6 @@ export async function getUserPosts() {
     return sendRequest(`${BASE_URL}/user`);
 }
 
-export async function getPost(postId, publicStatus) {
-    return sendRequest(`${BASE_URL}/${postId}?public=${publicStatus}`);
+export async function getPost(id, publicStatus) {
+    return sendRequest(`${BASE_URL}/${id}?${publicStatus}`);
 }
