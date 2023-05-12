@@ -20,11 +20,15 @@ export async function sendPostData(reqFormData) {
 }
 
 export async function deletePost(postId) {
-    return sendRequest(`${BASE_URL}/delete`, 'POST', {postId});
+    return sendRequest(`${BASE_URL}/delete/${postId}`, 'DELETE');
 }
 
 export async function updatePost(postId, update) {
-    return sendRequest(`${BASE_URL}/update`, 'PUT', {postId, update});
+    return sendRequest(`${BASE_URL}/update/${postId}`, 'PUT', { update });
+}
+
+export async function getPublicPosts() {
+    return sendRequest(`${BASE_URL}/public`);
 }
 
 export async function getUserPosts() {

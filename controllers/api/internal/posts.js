@@ -5,7 +5,8 @@ const errorHandler = require('../../../utils/errorHandler');
 
 async function checkAccess(req, res, next) {
     try {
-        const post =  await Post.findOne({ userId: req.user._id, _id: req.body.postId });
+        const post =  await Post.findOne({ userId: req.user._id, _id: req.params.id });
+        console.log(post);
         if (!post) res.status(403).json('Access Denied!');
         req.post = post
         return next();
@@ -42,7 +43,7 @@ async function updatePost(req, res) {
 async function deletePost(req, res) {
     try {
         await deleteFile(req.post.imageKey);
-        await Post.findByIdAndDelete(req.body.postId);
+        await Post.findByIdAndDelete(req.post._id);
         res.status(200).json('File deleted successfully!');
     } catch (err) {
         errorHandler(__dirname, __filename, 'deletePost', err, 500, res);

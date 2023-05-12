@@ -13,8 +13,8 @@ export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate
 
     function navigateToPost() {
         navigate({
-          pathname: `/posts/${post._id}`, 
-          search: `?${createSearchParams({ publicStatus: post.public })}`
+            pathname: `/posts/${post._id}`, 
+            search: `?${createSearchParams({ publicStatus: post.public })}`
         });
     }
 
