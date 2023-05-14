@@ -8,7 +8,7 @@ export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate
 
     async function handleDelete() {
         const deleteRes = await deletePost(post._id);
-        if (deleteRes === 'File deleted successfully') removePost(post._id);
+        if (deleteRes === 'File deleted successfully!') removePost(post._id);
     }
 
     function navigateToPost() {
