@@ -35,7 +35,6 @@ export default function UserPostItem({ post, idx, archivedAt, editedAt, navigate
                 </button>
               </div>
             </div>
-
           :
             <div>
               <h3 className='UserPostItem-title'>{post.title}</h3>
