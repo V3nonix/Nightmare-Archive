@@ -5,28 +5,36 @@ import axios from 'axios';
 
 export async function sendPostData(reqFormData) {
     const headers= {
-      'Content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data',
     }
     const token = getToken();
     if (token) {
-      headers.Authorization = `Bearer ${token}`;
+        headers.Authorization = `Bearer ${token}`;
     }
     try {
-      const response = await axios.post(`${BASE_URL}/create`, reqFormData, {headers});
-      return response.data;
+        const response = await axios.post(`${BASE_URL}/create`, reqFormData, {headers});
+        return response.data;
     } catch (err) {
-      throw err;
+        throw err;
     }
 }
 
 export async function deletePost(postId) {
-    return sendRequest(`${BASE_URL}/delete`, 'POST', {postId});
+    return sendRequest(`${BASE_URL}/delete/${postId}`, 'DELETE');
 }
 
 export async function updatePost(postId, update) {
-    return sendRequest(`${BASE_URL}/update`, 'PUT', {postId, update});
+    return sendRequest(`${BASE_URL}/update/${postId}`, 'PUT', { update });
+}
+
+export async function getPublicPosts() {
+    return sendRequest(`${BASE_URL}/public`);
 }
 
 export async function getUserPosts() {
     return sendRequest(`${BASE_URL}/user`);
+}
+
+export async function getPost(id, publicStatus) {
+    return sendRequest(`${BASE_URL}/${id}?${publicStatus}`);
 }

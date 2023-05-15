@@ -49,7 +49,7 @@ async function checkS3Bucket() {
     try {
         const params = { Bucket: process.env.AWS_S3_BUCKET };
         await s3.send(new HeadBucketCommand(params));
-        console.log(`\x1B[32mSuccess! \u001b[0m| Bucket [${process.env.AWS_S3_BUCKET}] exists and is accessible.`)
+        console.log(`\x1B[32mSuccess! \u001b[0m| Bucket [${process.env.AWS_S3_BUCKET}] exists and is accessible.`);
         return true;
     } catch (err) {
         if (error.code === 'NotFound'){

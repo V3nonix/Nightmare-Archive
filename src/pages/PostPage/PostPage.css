@@ -1,0 +1,53 @@
+.PostPage {
+    margin: 0;
+    height: 90vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    background-color: var(--background-1);
+    background-attachment: fixed;
+    color: var(--text-light);
+}
+
+.PostPage-image-container {
+    margin: 0.5rem;
+    background-color: var(--background-3);
+    border: 0.1rem outset var(--accent-2);
+    padding: 0.25rem;
+    height: min-content;
+    width: fit-content;
+}
+
+.PostPage-image {
+    height: 45vmin;
+    width: 45vmin;
+    background-size: cover;
+    background-position: center center
+}
+
+.PostPage-container {
+    margin: 2vmin;
+    background-color: var(--background-3);
+    border: 0.1rem outset var(--accent-2);
+    padding: 2vmin;
+    height: min-content;
+    width: fit-content;
+}
+
+.PostPage-sub-container {
+    background-color: var(--background-2);
+    border: 0.1rem inset var(--accent-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1vmin;
+    padding: 0.5vmin;
+    height: fit-content;
+    width: fit-content;
+}
+
+.PostPage-title {
+    font-size: xx-large;
+    font-weight: 500;
+}

@@ -14,9 +14,9 @@
 }
 
 @font-face {
-  font-family: Rye;
-  src: local('Rye-Regular'),
-    url("./fonts/Rye-Regular.ttf") format('truetype');
+  font-family: BungeeInline;
+  src: local('BungeeInline-Regular'),
+    url("./fonts/BungeeInline-Regular.ttf") format('truetype');
 }
 
 #root {
@@ -25,7 +25,8 @@
 }
 
 * {
-  font-family: Rye, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: BungeeInline, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 100;
   scrollbar-color: var(--accent-3) var(--accent-4);
 }
 
@@ -33,6 +34,11 @@ body {
   margin: 0;
   display: grid;
   width: 100%;
+}
+
+.flex-horizontal {
+  display: flex;
+  flex-direction: row;
 }
 
 /* Webkit Scrollbar */
